@@ -230,4 +230,3 @@ var actions = {
 		gui._toast.add('Catching Up!', '');
 	}
 }
-unsafeWindow.actions = actions;

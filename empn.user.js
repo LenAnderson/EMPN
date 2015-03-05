@@ -550,7 +550,6 @@ var md = {
 		}
 	}
 }
-unsafeWindow.md = md;
 var prefs = {
 	meta: {
 		version: 1
@@ -1739,7 +1738,6 @@ var actions = {
 		gui._toast.add('Catching Up!', '');
 	}
 }
-unsafeWindow.actions = actions;
 var state = {
 	torrentIndex: 0,
 	imgIndex: 0,

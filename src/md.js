@@ -301,4 +301,3 @@ var md = {
 		}
 	}
 }
-unsafeWindow.md = md;
