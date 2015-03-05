@@ -38,7 +38,7 @@ var prefs = {
 	blacklist: [],
 	timeOffset: 0,
 	latest: null,
-	torrentLimit: 500,
+	torrentLimit: 100,
 	
 	setNewestFirst: function(val) {
 		this.newestFirst = val;
