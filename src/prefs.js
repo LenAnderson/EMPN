@@ -9,23 +9,41 @@ var prefs = {
 	comments: ['Thanks!', 'Thank you!'],
 	thumbHeight: 200,
 	keys: {
-		'Next Torrent': null,
-		'Previous Torrent': null,
-		'Next Image': null,
-		'Previous Image': null,
-		'Show / Hide Image': null,
-		'Toggle Zoom': null,
-		'Open Image in a New Tab': null,
-		'Show / Hide Comments': null,
-		'Show / Hide Description': null,
-		'Download': null,
-		'Open Details in a New Tab': null,
-		'Block Image': null,
-		'Send Thanks': null,
-		'Add Comment': null,
-		'Add Manual Comment': null,
-		'Catch Up': null,
-		'Catch Up to Current Torrent': null
+		'Next Torrent': {ctrlKey:false,shiftKey:false,keyIdentifier:"Down"},
+		'Previous Torrent': {ctrlKey:false,shiftKey:false,keyIdentifier:"Up"},
+		'Next Image': {ctrlKey:false,shiftKey:false,keyIdentifier:"Right"},
+		'Previous Image': {ctrlKey:false,shiftKey:false,keyIdentifier:"Left"},
+		'Show / Hide Image': {ctrlKey:false,shiftKey:false,keyIdentifier:"U+0020"},
+		'Toggle Zoom': {ctrlKey:false,shiftKey:false,keyIdentifier:"U+0046"},
+		'Open Image in a New Tab': {ctrlKey:false,shiftKey:false,keyIdentifier:"U+0047"},
+		'Show / Hide Comments': {ctrlKey:false,shiftKey:false,keyIdentifier:"U+0043"},
+		'Show / Hide Description': {ctrlKey:false,shiftKey:false,keyIdentifier:"U+0044"},
+		'Download': {ctrlKey:false,shiftKey:false,keyIdentifier:"U+0053"},
+		'Open Details in a New Tab': {ctrlKey:false,shiftKey:false,keyIdentifier:"U+0041"},
+		'Block Image': {ctrlKey:false,shiftKey:false,keyIdentifier:"U+0042"},
+		'Send Thanks': {ctrlKey:false,shiftKey:false,keyIdentifier:"U+0054"},
+		'Add Comment': {ctrlKey:false,shiftKey:false,keyIdentifier:"U+0056"},
+		'Add Manual Comment': {ctrlKey:false,shiftKey:true,keyIdentifier:"U+0056"},
+		'Catch Up': {ctrlKey:false,shiftKey:true,keyIdentifier:"U+007F"},
+		'Catch Up to Current Torrent': {ctrlKey:false,shiftKey:false,keyIdentifier:"U+007F"}
+		
+		Add Comment: 
+		Add Manual Comment: 
+		Block Image: 
+		Catch Up: 
+		Catch Up to Current Torrent: 
+		Download: 
+		Next Image: 
+		Next Torrent: 
+		Open Details in a New Tab: 
+		Open Image in a New Tab: 
+		Previous Image: 
+		Previous Torrent: 
+		Send Thanks: 
+		Show / Hide Comments: 
+		Show / Hide Description: 
+		Show / Hide Image: 
+		Toggle Zoom: 
 	},
 	autoTags: true,
 	tagLimit: 1000,
