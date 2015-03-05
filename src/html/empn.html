@@ -1,0 +1,250 @@
+<style type="text/css">
+	${include: ../css/style.css}
+</style>
+
+<div id="app">
+	<div class="empn-toolbar" id="appbar">
+		<ul class="empn-sect">
+			<li class="empn-item"><a class="empn-item-link" id="menu-link">≡</a></li>
+		</ul>
+		<ul class="empn-sect empn-secondary">
+			<li class="empn-item"><a href="index.php" class="empn-item-link">Back to EMP</a></li>
+		</ul>
+	</div>
+
+
+	<div id="items">
+	</div>
+</div>
+
+<div class="empn-dialog" id="dlg-img">
+	<div class="empn-height"></div>
+	<div class="empn-content">
+		<img class="empn-img">
+	</div>
+</div>
+
+
+<div class="empn-menu" id="preferences">
+	<div class="empn-content">
+		<div class="empn-title">Preferences</div>
+		<ul class="empn-items">
+			<li class="empn-item" title="Checked: order by date, descending. Unchecked: order by date, ascending">
+				<label class="empn-item-link" for="prefs-newest-first">
+				<input type="checkbox" id="prefs-newest-first"> Sort New to Old</label>
+			</li>
+			<li class="empn-item" title="Combine torrents with the same name and different quality hint in the title (e.g. '... [1080p]')">
+				<label class="empn-item-link" for="prefs-combine">
+					<input type="checkbox" id="prefs-combine"> Combine Torrents (<label for="prefs-combine-highest" title="When downloading combined torrents automatically select the highest quality. If unchecked you will be asked to select the quality.">Download Highest Quality: <input type="checkbox" id="prefs-combine-highest"></label>)
+				</label>
+			</li>
+			<li class="empn-item" title="Automatically send 'Thanks' when downloading a torrent">
+				<label class="empn-item-link" for="prefs-auto-thanks"><input type="checkbox" id="prefs-auto-thanks"> Auto Thanks</label>
+			</li>
+			<li class="empn-item" title="Automatically send a random or manually entered (when 'Prompt' is checked) comment when downloading a torrent">
+				<label class="empn-item-link" for="prefs-auto-comments">
+					<input type="checkbox" id="prefs-auto-comments"> Auto Comments (<label for="prefs-auto-comments-prompt">Prompt: <input type="checkbox" id="prefs-auto-comments-prompt"></label>)
+				</label>
+			</li>
+			<li class="empn-item" title="Edit the list of random comments">
+				<a class="empn-item-link" id="prefs-comments">Edit Comments</a>
+			</li>
+			<li class="empn-item" title="Height of the thumbnail images in pixel">
+				<label for="prefs-thumb-height" class="empn-item-link">
+					<div class="empn-input">
+						<input type="number" placeholder="Thumbnail Height" id="prefs-thumb-height">
+					</div>
+				</label>
+			</li>
+			<li class="empn-item" title="Automatically rate tags: when downloading a torrent, all of its tags' ratings increase by 1. The higher a tag's rating the stronger it will be highlighted in the torrent list.">
+				<label class="empn-item-link" for="prefs-auto-tags"><input type="checkbox" id="prefs-auto-tags"> Auto Tag Ratings</label>
+			</li>
+			<li class="empn-item" title="When the rating limit is reached the tag's highlight will not get any stronger">
+				<label for="prefs-tag-limit" class="empn-item-link">
+					<div class="empn-input">
+						<input type="number" placeholder="Tag Rating Limit" id="prefs-tag-limit">
+					</div>
+				</label>
+			</li>
+			<li class="empn-item" title="Edit the list of good and bad tags and view the tag ratings">
+				<a class="empn-item-link" id="prefs-tags">Edit Tags</a>
+			</li>
+			<li class="empn-item" title="Edit the key bindings">
+				<a class="empn-item-link" id="prefs-keys">Key Bindings</a>
+			</li>
+			<li class="empn-item" title="Timezone Offset">
+				<label for="prefs-timezone-offset" class="empn-item-link">
+					<div class="empn-input">
+						<input type="number" placeholder="Timezone Offset" id="prefs-timezone-offset">
+					</div>
+				</label>
+			</li>
+			<li class="empn-item" title="Maximum number of torrents to load">
+				<label for="prefs-torrent-limit" class="empn-item-link">
+					<div class="empn-input">
+						<input type="number" placeholder="Torrent Limit" id="prefs-torrent-limit">
+					</div>
+				</label>
+			</li>
+			<li class="empn-item" title="Date/time of latest viewed torrent">
+				<label for="prefs-torrent-limit" class="empn-item-link">
+					<div class="empn-input">
+						<input type="datetime" placeholder="Latest Torrent" id="prefs-latest-torrent" disabled>
+					</div>
+				</label>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+<div class="empn-dialog" id="dlg-prefs-comments">
+	<div class="empn-height"></div>
+	<div class="empn-content">
+		<div class="empn-title">Edit Auto Comments</div>
+		<div>
+			<p>Separate comments with a line containing only <code>###</code></p>
+			<textarea id="dlg-prefs-comments-input">
+			</textarea>
+		</div>
+		<div class="empn-actions">
+			<button id="dlg-prefs-comments-ok">OK</button>
+			<button id="dlg-prefs-comments-cancel">Cancel</button>
+		</div>
+	</div>
+</div>
+
+
+<div class="empn-dialog" id="dlg-prefs-tags">
+	<div class="empn-height"></div>
+	<div class="empn-content">
+		<div class="empn-title">Edit Tags</div>
+		<div class="empn-dlg-prefs-tags-container">
+			<label for="dlg-prefs-tags-good">
+				Good<br>
+				<textarea id="dlg-prefs-tags-good"></textarea>
+			</label>
+			<label for="dlg-prefs-tags-bad">
+				Bad<br>
+				<textarea id="dlg-prefs-tags-bad"></textarea>
+			</label>
+		</div>
+		<div class="empn-dlg-prefs-tags-container">
+			<label for="dlg-prefs-tags-vgood">
+				Outstanding <small>(trumps horrible tags)</small><br>
+				<textarea id="dlg-prefs-tags-vgood"></textarea>
+			</label>
+			<label for="dlg-prefs-tags-vbad">
+				Horrible <small>(hides torrents from list)</small><br>
+				<textarea id="dlg-prefs-tags-vbad"></textarea>
+			</label>
+		</div>
+		<div class="empn-dlg-prefs-tags-table-container">
+			<table iD="dlg-prefs-tags-ratings">
+				<thead>
+					<tr>
+						<th>Tag</th>
+						<th>Rating</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+		<div class="empn-actions">
+			<button id="dlg-prefs-tags-ok">OK</button>
+			<button id="dlg-prefs-tags-cancel">Cancel</button>
+		</div>
+	</div>
+</div>
+
+
+<div class="empn-dialog" id="dlg-prefs-keys">
+	<div class="empn-height"></div>
+	<div class="empn-content">
+		<div class="empn-title">Key Bindings</div>
+			<table>
+				<thead>
+					<tr>
+						<th>Action</th>
+						<th>Key</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		<div class="empn-actions">
+			<button id="dlg-prefs-keys-ok">OK</button>
+			<button id="dlg-prefs-keys-cancel">Cancel</button>
+		</div>
+	</div>
+</div>
+
+
+<div class="empn-dialog" id="dlg-comment-prompt">
+	<div class="empn-height"></div>
+	<div class="empn-content">
+		<div class="empn-title">Please leave a comment</div>
+		<textarea id="dlg-comment-prompt-input"></textarea>
+		<div class="empn-actions">
+			<button id="dlg-comment-prompt-ok">Leave Comment</button>
+			<button id="dlg-comment-prompt-random">Random Comment</button>
+			<button id="dlg-comment-prompt-cancel">No Comment</button>
+		</div>
+	</div>
+</div>
+
+
+<div class="empn-dialog" id="dlg-description">
+	<div class="empn-height"></div>
+	<div class="empn-content">
+		<div class="empn-title"></div>
+		<div class="empn-description box"></div>
+	</div>
+</div>
+
+
+<div class="empn-dialog" id="dlg-comments">
+	<div class="empn-height"></div>
+	<div class="empn-content">
+		<div class="empn-title"></div>
+		<div class="empn-comments box"></div>
+	</div>
+</div>
+
+
+<div class="empn-dialog" id="dlg-quality">
+	<div class="empn-height"></div>
+	<div class="empn-content">
+		<div class="empn-title">Select Quality</div>
+		<div class="empn-actions"></div>
+	</div>
+</div>
+
+
+<div class="empn-dialog" id="dlg-comment">
+	<div class="empn-height"></div>
+	<div class="empn-content">
+		<div class="empn-title">Enter a Comment</div>
+		<div><textarea id="dlg-comment-input"></textarea></div>
+		<div class="empn-actions">
+			<button id="dlg-comment-ok">Comment</button>
+			<button id="dlg-comment-cancel">Don't Comment</button>
+		</div>
+	</div>
+</div>
+
+
+<ul class="empn-toasts">
+</ul>
+
+
+<div id="loading">
+	<div class="empn-height"></div>
+	<div class="empn-content">
+		<div class="empn-info">&nbsp;</div>
+		<div class="empn-spinner">
+			<div class="empn-track"></div>
+			<div class="empn-blob"></div>
+		</div>
+		<div class="empn-info">&nbsp;</div>
+	</div>
+</div>
