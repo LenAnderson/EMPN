@@ -177,7 +177,24 @@ function keyIdentifier(evt) {
 	if (evt.ctrlKey) key.push('Ctrl');
 	if (evt.shiftKey) key.push('Shift');
 	
-	var ki = evt.keyIdentifier;
+	var ki;
+	if (evt.keyIdentifier) {
+		ki = evt.keyIdentifier;
+	} else {
+		if (evt.keyCode == 16) ki = 'Shift';
+		else if (evt.keyCode == 17) ki = 'Ctrl';
+		else if (evt.keyCode == 18) ki = 'Alt';
+		else if (evt.keyCode == 37) ki = 'Left';
+		else if (evt.keyCode == 38) ki = 'Up';
+		else if (evt.keyCode == 39) ki = 'Right';
+		else if (evt.keyCode == 40) ki = 'Down';
+		else if (evt.keyCode == 46) ki = 'U+007F'; // Del
+		else if (evt.keyCode == 18) ki = 'U+0020'; // Space
+		else if (evt.keyCode == 8) ki = 'U+0008'; // Backspace
+		else if (evt.keyCode == 9) ki = 'U+0009'; // Tab
+		else if (evt.keyCode == 27) ki = 'U+001B'; // Esc
+		else ki = 'U+' + ('0000' + evt.keyCode.toString(16)).slice(-4);
+	}
     if (ki == undefined) return '';
     if (ki.search(/^U\+([0-9A-F]){4}$/) == 0) {
         if (ki == 'U+0020')
@@ -253,7 +270,7 @@ function getHTML(url) {
 
 
 /****************************************\
-| $HELPERS
+| $MD
 \****************************************/
 var md = {
 	init: function() {
@@ -1072,10 +1089,10 @@ var gui = {
 		$('#loading').remove();
 	},
 	updateLoading: function(txt) {
-		$('#loading .empn-info').innerText = txt;
+		$('#loading .empn-info').textContent = txt;
 	},
 	updateLoadingSub: function(txt) {
-		$('#loading .empn-info:nth-child(3)').innerText = txt;
+		$('#loading .empn-info:nth-child(3)').textContent = txt;
 	},
 	
 	calcItemHeight: function() {

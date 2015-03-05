@@ -103,10 +103,10 @@ var gui = {
 		$('#loading').remove();
 	},
 	updateLoading: function(txt) {
-		$('#loading .empn-info').innerText = txt;
+		$('#loading .empn-info').textContent = txt;
 	},
 	updateLoadingSub: function(txt) {
-		$('#loading .empn-info:nth-child(3)').innerText = txt;
+		$('#loading .empn-info:nth-child(3)').textContent = txt;
 	},
 	
 	calcItemHeight: function() {
