@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name         EMPNews
-// @namespace    http://your.homepage/
+// @name         EMPN
+// @namespace    https://github.com/LenAnderson/
+// @downloadURL  https://github.com/LenAnderson/EMPN/raw/master/empn.user.js
 // @version      0.1
-// @description  enter something useful
-// @author       You
+// @author       LenAnderson
 // @match        http://*.empornium.me/*
-// @match        http://localhost/empnews/empn.php
+// @match        https://*.empornium.me/*
 // @grant        none
 // ==/UserScript==
 
