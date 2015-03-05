@@ -578,24 +578,6 @@ var prefs = {
 		'Add Manual Comment': {ctrlKey:false,shiftKey:true,keyIdentifier:"U+0056"},
 		'Catch Up': {ctrlKey:false,shiftKey:true,keyIdentifier:"U+007F"},
 		'Catch Up to Current Torrent': {ctrlKey:false,shiftKey:false,keyIdentifier:"U+007F"}
-		
-		Add Comment: 
-		Add Manual Comment: 
-		Block Image: 
-		Catch Up: 
-		Catch Up to Current Torrent: 
-		Download: 
-		Next Image: 
-		Next Torrent: 
-		Open Details in a New Tab: 
-		Open Image in a New Tab: 
-		Previous Image: 
-		Previous Torrent: 
-		Send Thanks: 
-		Show / Hide Comments: 
-		Show / Hide Description: 
-		Show / Hide Image: 
-		Toggle Zoom: 
 	},
 	autoTags: true,
 	tagLimit: 1000,
