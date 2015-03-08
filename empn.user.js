@@ -2,7 +2,7 @@
 // @name         EMPN
 // @namespace    https://github.com/LenAnderson/
 // @downloadURL  https://github.com/LenAnderson/EMPN/raw/master/empn.user.js
-// @version      0.2
+// @version      0.3
 // @author       LenAnderson
 // @match        http://*.empornium.me/*
 // @match        https://*.empornium.me/*
@@ -1315,7 +1315,7 @@ var data = {
 			var _items = [];
 			var titles = [];
 			items.forEach(function(item, i) {
-				var title = item.title.replace(/(^|[^a-z0-9])(\d+[pi]|\d+x\d+)([^a-z0-9]|$)/i, "$1_EMPN_RESOLUTION_$3")
+				var title = item.title.replace(/(^|[^a-z0-9])\[?(\d+[pi]|\d+x\d+|\[\d+\])\]?([^a-z0-9]|$)/i, "$1[_EMPN_RESOLUTION_]$3")
 										.replace(/(^|[^a-z0-9])(\d+(\.\d+)?mb?ps)([^a-z0-9]|$)/i, "$1_EMPN_BITRATE_$4")
 										.replace(/(^|[^a-z0-9])(mp4|wmv|mkv)([^a-z0-9]|$)/i, "$1_EMPN_TYPE_$3");
 				if (title == item.title) {
@@ -1325,24 +1325,24 @@ var data = {
 					return;
 				}
 				item.quality = [];
-				var resolution = item.title.replace(/^.*?(^|[^a-z0-9])(\d+[pi]|\d+x\d+)([^a-z0-9]|$).*$/i, "$2");
+				var resolution = item.title.replace(/^.*?(^|[^a-z0-9])((\d+[pi])|(\d+x\d+)|\[(\d+)\])([^a-z0-9]|$).*$/i, "$3$4$5");
 				var bitrate = item.title.replace(/^.*?(^|[^a-z0-9])(\d+(\.\d+)?mb?ps)([^a-z0-9]|$).*$/i, "$2");
 				var type = item.title.replace(/^.*?(^|[^a-z0-9])(mp4|wmv|mkv)([^a-z0-9]|$).*$/i, "$2");
 				if (resolution != item.title) item.quality.push(resolution);
 				if (bitrate != item.title) item.quality.push(bitrate);
 				if (type != item.title) item.quality.push(type);
-				var resValue = item.title.replace(/^.*?(^|[^a-z0-9])((\d+)[pi]|\d+x(\d+))([^a-z0-9]|$).*$/i, "$3$4")*1;
+				var resValue = item.title.replace(/^.*?(^|[^a-z0-9])((\d+)[pi]|\d+x(\d+)|\[(\d+)\])([^a-z0-9]|$).*$/i, "$3$4$5")*1;
 				var bitValue = item.title.replace(/^.*?(^|[^a-z0-9])((\d+(\.\d+)?)mb?ps)([^a-z0-9]|$).*$/i, "$3")*1;
 				item.qualityValue = (resValue||1)*(bitValue||1);
 				item.qualities = items.filter(function(itm) {
-					return itm.title.replace(/(^|[^a-z0-9])(\d+[pi]|\d+x\d+)([^a-z0-9]|$)/i, "$1_EMPN_RESOLUTION_$3")
+					return itm.title.replace(/(^|[^a-z0-9])\[?(\d+[pi]|\d+x\d+|\[\d+\])\]?([^a-z0-9]|$)/i, "$1[_EMPN_RESOLUTION_]$3")
 										.replace(/(^|[^a-z0-9])(\d+(\.\d+)?mb?ps)([^a-z0-9]|$)/i, "$1_EMPN_BITRATE_$4")
 										.replace(/(^|[^a-z0-9])(mp4|wmv|mkv)([^a-z0-9]|$)/i, "$1_EMPN_TYPE_$3") == title;
 				});
 			});
 			items.forEach(function(item, i) {
 				if (item.qualities.length > 1) {
-					var title = item.title.replace(/(^|[^a-z0-9])(\d+[pi]|\d+x\d+)([^a-z0-9]|$)/i, "$1_EMPN_RESOLUTION_$3")
+					var title = item.title.replace(/(^|[^a-z0-9])\[?(\d+[pi]|\d+x\d+|\[\d+\])\]?([^a-z0-9]|$)/i, "$1[_EMPN_RESOLUTION_]$3")
 										.replace(/(^|[^a-z0-9])(\d+(\.\d+)?mb?ps)([^a-z0-9]|$)/i, "$1_EMPN_BITRATE_$4")
 										.replace(/(^|[^a-z0-9])(mp4|wmv|mkv)([^a-z0-9]|$)/i, "$1_EMPN_TYPE_$3");
 					if (titles.lastIndexOf(title) != -1) {
@@ -1371,7 +1371,7 @@ var data = {
 					item.qualities.spread('thumbs').forEach(function(thumbs) {
 						_item.thumbs = _item.thumbs.concat(thumbs.filter(function(thumb) { return _item.thumbs.lastIndexOf(thumb) == -1; }));
 					});
-					_item.title = item.title.replace(/\[?(^|[^a-z0-9])(\d+[pi]|\d+x\d+)([^a-z0-9]|$)\]?/i, "")
+					_item.title = item.title.replace(/\[?(^|[^a-z0-9])(\d+[pi]|\d+x\d+|\[\d+\])([^a-z0-9]|$)\]?/i, "")
 										.replace(/\[?(^|[^a-z0-9])(\d+(\.\d+)?mb?ps)([^a-z0-9]|$)\]?/i, "")
 										.replace(/\[?(^|[^a-z0-9])(mp4|wmv|mkv)([^a-z0-9]|$)\]?/i, "") + ' [' + item.qualities.spread('quality').map(function(it) { return it.join('-'); }).join(', ') + ']';
 					_items.push(_item);
