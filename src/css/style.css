@@ -242,7 +242,7 @@ ${include: md.css}
 
 
 
-#dlg-prefs-comments-input {
+#dlg-prefs-comments-input, #dlg-prefs-search-string-input {
 	height: 200px;
 	width: 500px;
 }

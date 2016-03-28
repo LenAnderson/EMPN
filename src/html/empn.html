@@ -86,6 +86,14 @@
 					</div>
 				</label>
 			</li>
+			<li class="empn-item" title="Use a search string for the torrent list">
+				<label class="empn-item-link" for="prefs-use-search-string">
+					<input type="checkbox" id="prefs-use-search-string"> Use Search String
+				</label>
+			</li>
+			<li class="empn-item" title="Edit the search string">
+				<a class="empn-item-link" id="prefs-search-string">Edit Search String</a>
+			</li>
 			<li class="empn-item" title="Date/time of latest viewed torrent">
 				<label for="prefs-torrent-limit" class="empn-item-link">
 					<div class="empn-input">
@@ -110,6 +118,22 @@
 		<div class="empn-actions">
 			<button id="dlg-prefs-comments-ok">OK</button>
 			<button id="dlg-prefs-comments-cancel">Cancel</button>
+		</div>
+	</div>
+</div>
+
+
+<div class="empn-dialog" id="dlg-prefs-search-string">
+	<div class="empn-height"></div>
+	<div class="empn-content">
+		<div class="empn-title">Edit Search String</div>
+		<div>
+			<textarea id="dlg-prefs-search-string-input">
+			</textarea>
+		</div>
+		<div class="empn-actions">
+			<button id="dlg-prefs-search-string-ok">OK</button>
+			<button id="dlg-prefs-search-string-cancel">Cancel</button>
 		</div>
 	</div>
 </div>

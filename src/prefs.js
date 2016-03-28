@@ -39,6 +39,8 @@ var prefs = {
 	timeOffset: 0,
 	latest: null,
 	torrentLimit: 100,
+	useSearchString: false,
+	searchString: '',
 	
 	setNewestFirst: function(val) {
 		this.newestFirst = val;
@@ -100,6 +102,14 @@ var prefs = {
 		this.torrentLimit = val;
 		this.save();
 	},
+	setUseSearchString: function(val) {
+		this.useSearchString = val;
+		this.save();
+	},
+	setSearchString: function(val) {
+		this.searchString = val;
+		this.save();
+	},
 	setLatest: function(val) { console.info('setLatest', val);
 		this.latest = val;
 		this.save();
@@ -154,6 +164,8 @@ var prefs = {
 							this.keys[_key] = prefs[key][_key];
 						}
 					}
+				} else if (key == 'latest') {
+					this[key] = new Date(prefs[key]);
 				} else {
 					this[key] = prefs[key];
 				}

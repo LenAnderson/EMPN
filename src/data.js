@@ -139,24 +139,10 @@ var data = {
 	},
 	
 	load: function() {
-		//DEBUG
-		// this._items = [
-			// {idx: 0, id: 'x', category: 'Pictures', url: 'Book.xlsx', title: 'This is the title', comments: 9, size: '123 GB', snatches: 100, date: '2015-02-04', thumbs: ['/pix5/albums/Test/(001)/IMG_8943.JPG','/pix5/albums/Test/(001)/IMG_8959.JPG','/pix5/albums/Test/(001)/IMG_8946.JPG'], tags: ['1080p', 'maps', 'something.else', 'not.good', 'mmmmmmmmmmmmmmmmmmmmmmmmm', 'wwwwwwww.wwwwwwwwwww.wwwwwwwwwwwww', 'asdfhjlkasdfhjlkasdfhk', 'asdf', 'hkjl', 'mmmmmmmmmmmm.wwwwwwwwwwwww.mmmmmmmmmmmm', 'wwwwwwwww.mmmmmmmmm.wwwwwwwwmmmmm', 'aposiudlfkasjdhföaslkdjf', 'aölksjdhfalksjdhf', 'aölkjf.asd,kjföakshs', 'lakjsdhfl.as,dfjlaksdjf']},
-			// {idx: 1, id: 'y', category: 'Pictures', url: 'Book.xlsx', title: 'This is the title', comments: 9, size: '123 GB', snatches: 100, date: '2015-02-04', thumbs: ['/pix5/albums/Test/(001)/IMG_8943.JPG','/pix5/albums/Test/(001)/IMG_8959.JPG','/pix5/albums/Test/(001)/IMG_8946.JPG'], tags: ['1080p', 'maps', 'something.else', 'tags']},
-			// {idx: 2, id: 'c', category: 'Pictures', url: 'Book.xlsx', title: 'This is the title', comments: 9, size: '123 GB', snatches: 100, date: '2015-02-04', thumbs: ['/pix5/albums/Test/(001)/IMG_8943.JPG','/pix5/albums/Test/(001)/IMG_8959.JPG','/pix5/albums/Test/(001)/IMG_8946.JPG'], tags: ['1080p', 'maps', 'something.else', 'rag.tag']},
-			// {idx: 3, id: 'v', category: 'Pictures', url: 'Book.xlsx', title: 'This is the title', comments: 9, size: '123 GB', snatches: 100, date: '2015-02-04', thumbs: ['/pix5/albums/Test/(001)/IMG_8943.JPG','/pix5/albums/Test/(001)/IMG_8959.JPG','/pix5/albums/Test/(001)/IMG_8946.JPG'], tags: ['1080p', 'maps', 'something.else', 'bla', 'mmmmmmmmmmmmmmmmmmmmmmmmm', 'wwwwwwww.wwwwwwwwwww.wwwwwwwwwwwww', 'asdfhjlkasdfhjlkasdfhk', 'asdf', 'hkjl', 'mmmmmmmmmmmm.wwwwwwwwwwwww.mmmmmmmmmmmm', 'wwwwwwwww.mmmmmmmmm.wwwwwwwwmmmmm', 'aposiudlfkasjdhföaslkdjf', 'aölksjdhfalksjdhf', 'aölkjf.asd,kjföakshs', 'lakjsdhfl.as,dfjlaksdjf']},
-			// {idx: 4, id: 'b', category: 'Pictures', url: 'Book.xlsx', title: 'This is the title', comments: 9, size: '123 GB', snatches: 100, date: '2015-02-04', thumbs: ['/pix5/albums/Test/(001)/IMG_8943.JPG','/pix5/albums/Test/(001)/IMG_8959.JPG','/pix5/albums/Test/(001)/IMG_8946.JPG'], tags: ['1080p', 'maps', 'something.else', 'script']},
-			// {idx: 5, id: 'n', category: 'Pictures', url: 'Book.xlsx', title: 'This is another title [1080x720]', comments: 9, size: '123 GB', snatches: 100, date: '2015-02-04', thumbs: ['/pix5/albums/Test/(001)/IMG_8943.JPG','/pix5/albums/Test/(001)/IMG_8959.JPG','/pix5/albums/Test/(001)/IMG_8946.JPG'], tags: ['1080p', 'maps', 'something.else', 'dev']},
-			// {idx: 6, id: 'm', category: 'Pictures', url: 'Book.xlsx', title: 'This one is different [480p]', comments: 2, size: '600 MB', snatches: 64, date: '2015-02-04', thumbs: ['/pix5/albums/Test/(001)/IMG_8980.JPG','/pix5/albums/Test/(001)/IMG_8981.JPG','/pix5/albums/Test/(001)/IMG_8985.JPG','/pix5/albums/Test/(001)/IMG_8987.JPG'], tags: ['480p', 'maps', 'something.else', 'dev']},
-			// {idx: 7, id: ',', category: 'Pictures', url: 'Book.xlsx', title: 'This one is different [720p]', comments: 4, size: '1.5 GB', snatches: 23, date: '2015-02-04', thumbs: ['/pix5/albums/Test/(001)/IMG_8980.JPG','/pix5/albums/Test/(001)/IMG_8981.JPG','/pix5/albums/Test/(001)/IMG_8985.JPG','/pix5/albums/Test/(001)/IMG_8987.JPG'], tags: ['720p', 'maps', 'something.else', 'dev']},
-			// {idx: 8, id: '.', category: 'Pictures', url: 'Book.xlsx', title: 'This one is different [1080p]', comments: 3, size: '7.8 GB', snatches: 45, date: '2015-02-04', thumbs: ['/pix5/albums/Test/(001)/IMG_8980.JPG','/pix5/albums/Test/(001)/IMG_8981.JPG','/pix5/albums/Test/(001)/IMG_8985.JPG','/pix5/albums/Test/(001)/IMG_8994.JPG'], tags: ['1080p', 'maps', 'something.else', 'dev']},
-			// {idx: 8, id: '.', category: 'Pictures', url: 'Book.xlsx', title: 'This one is different in another way [1920x1080]', comments: 3, size: '7.8 GB', snatches: 45, date: '2015-02-04', thumbs: ['/pix5/albums/Test/(001)/IMG_8980.JPG','/pix5/albums/Test/(001)/IMG_8981.JPG','/pix5/albums/Test/(001)/IMG_8985.JPG','/pix5/albums/Test/(001)/IMG_8987.JPG'], tags: ['1080p', 'maps', 'something.else', 'dev']},
-			// {idx: 8, id: '.', category: 'Pictures', url: 'Book.xlsx', title: 'This one is different in another way [1080x720]', comments: 3, size: '7.8 GB', snatches: 45, date: '2015-02-04', thumbs: ['/pix5/albums/Test/(001)/IMG_8980.JPG','/pix5/albums/Test/(001)/IMG_8981.JPG','/pix5/albums/Test/(001)/IMG_8985.JPG','/pix5/albums/Test/(001)/IMG_8987.JPG'], tags: ['1080p', 'maps', 'something.else', 'dev']},
-		// ];
-		// this.update();
-		// gui.hideLoading();
-		// state.listening = true;
-		// return;
+		if (prefs.useSearchString && prefs.searchString) {
+			this.listParams.action = 'advanced';
+			this.listParams.searchtext = encodeURIComponent('"'+prefs.searchString.replace(/\r?\n/g, '"|"')+'"');
+		}
 		this.loadPage().then(function(page) {
 			this.parsePage(page).then(function(next) {
 				if (next) {
@@ -232,7 +218,15 @@ var data = {
 					if (++done + doneSkip == rows.length) {
 						resolve(item.date > new Date(prefs.latest) && this._items.length < prefs.torrentLimit);
 					}
-				}.bind(this));
+				}.bind(this),
+				function(err) {
+					console.info(err);
+					gui.updateLoadingSub(done+1+doneOffset + ' Torrents loaded');
+					minDate = Math.min(minDate, item.date);
+					if (++done + doneSkip == rows.length) {
+						resolve(item.date > new Date(prefs.latest) && this._items.length < prefs.torrentLimit);
+					}
+				});
 			}.bind(this));
 		}.bind(this));
 	},

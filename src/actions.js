@@ -7,7 +7,7 @@ var actions = {
 		state.torrentIndex = idx;
 		this.activateImage(0, oldIdx);
 		var el = $('#item-' + state.torrentIndex);
-		gui._items.scrollTo(el.offsetTop - (gui._items.offsetHeight - gui.height) / 2);
+		gui._items.scrollToV(el.offsetTop - (gui._items.offsetHeight - gui.height) / 2);
 		el.addClass('empn-active');
 		if (gui._dlgComm.hasClass('empn-active')) {
 			this.showComments();
@@ -32,6 +32,8 @@ var actions = {
 		state.imgIndex = idx;
 		var el = $('#item-' + state.torrentIndex + ' .empn-img-' + state.imgIndex);
 		if (el) el.addClass('empn-active');
+		var thumbsEl = $('#item-' + state.torrentIndex + ' .empn-thumbs');
+		if (el) thumbsEl.scrollToH(el.offsetLeft + el.offsetWidth - thumbsEl.offsetWidth);
 		if (gui._dlgImg.hasClass('empn-active')) {
 			this.showImage();
 		}

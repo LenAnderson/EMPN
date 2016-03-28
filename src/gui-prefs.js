@@ -20,6 +20,9 @@
 		_timeOffset: undefined,
 		_torrentLimit: undefined,
 		_latestTorrent: undefined,
+		_useSearchString: undefined,
+		_searchString: undefined,
+		_dlgSearchString: undefined,
 		
 		init: function() {
 			this._dlgComments = $('#dlg-prefs-comments');
@@ -43,6 +46,9 @@
 			this._timeOffset = $('#prefs-timezone-offset');
 			this._torrentLimit = $('#prefs-torrent-limit');
 			this._latestTorrent = $('#prefs-latest-torrent');
+			this._useSearchString = $('#prefs-use-search-string');
+			this._searchString = $('#dlg-prefs-search-string-input');
+			this._dlgSearchString = $('#dlg-prefs-search-string');
 			
 			this.initValues();
 			
@@ -53,6 +59,7 @@
 			$('#prefs-timezone-offset')._('click', stopProp);
 			$('#prefs-torrent-limit')._('click', stopProp);
 			$('#prefs-latest-torrent')._('click', stopProp);
+			$('#prefs-search-string')._('click', this._dlgSearchString.show);
 			
 			this._newestFirst._('change', function() {
 				prefs.setNewestFirst(this.checked);
@@ -94,6 +101,10 @@
 				this.initValues();
 				gui.repaint(true);
 			}.bind(this));
+			
+			this._useSearchString._('change', function() {
+				prefs.setUseSearchString(this.checked);
+			});
 			
 			$('#prefs-keys')._('click', this._dlgKeys.show);
 			
@@ -156,6 +167,16 @@
 				prefs.setLatest(this._latestTorrent.value*1);
 				this.initValues();
 			}.bind(this));
+			
+			// dlg: search string
+			$('#dlg-prefs-search-string-ok')._('click', function() {
+				this._dlgSearchString.hide();
+				prefs.setSearchString(this._searchString.value.trim());
+			}.bind(this));
+			$('#dlg-prefs-search-string-cancel')._('click', function() {
+				this._dlgSearchString.hide();
+				this.initValues();
+			}.bind(this));
 		},
 		
 		initValues: function() {
@@ -175,8 +196,10 @@
 			md.input.blur(this._timeOffset.parentNode);
 			this._torrentLimit.value = prefs.torrentLimit;
 			md.input.blur(this._torrentLimit.parentNode);
-			this._latestTorrent.value = (prefs.latestTorrent || {empnFormat: function() {}});
+			this._latestTorrent.value = (prefs.latest || {empnFormat: function() {}}).empnFormat();
 			md.input.blur(this._latestTorrent.parentNode);
+			this._useSearchString.checked = prefs.useSearchString;
+			this._searchString.value = prefs.searchString;
 			var g = [];
 			var b = [];
 			for(var tag in prefs.goodTags) {

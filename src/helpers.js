@@ -90,7 +90,7 @@ Node.prototype.removeChildren = function(offset) {
     }
 };
 
-Node.prototype.scrollTo = function(y) {
+Node.prototype.scrollToV = function(y) {
 	var el = this;
 	var timeLapsed = 0;
 	var percentage = 0;
@@ -247,9 +247,10 @@ function post(url, args) {
 	});
 }
 function getHTML(url) {
-    return get(url).then(function(txt) {
-        var html = document.createElement('div');
-        html.innerHTML = txt.replace(/ (src|href)=/g, ' data-$1=');
-        return html;
-    });
+    return get(url).then(
+		function(txt) {
+			var html = document.createElement('div');
+			html.innerHTML = txt.replace(/ (src|href)=/g, ' data-$1=');
+			return html;
+		});
 }
