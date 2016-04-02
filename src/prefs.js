@@ -41,6 +41,7 @@ var prefs = {
 	torrentLimit: 100,
 	useSearchString: false,
 	searchString: '',
+	nfo: false,
 	
 	setNewestFirst: function(val) {
 		this.newestFirst = val;
@@ -108,6 +109,10 @@ var prefs = {
 	},
 	setSearchString: function(val) {
 		this.searchString = val;
+		this.save();
+	},
+	setNfo: function(val) {
+		this.nfo = val;
 		this.save();
 	},
 	setLatest: function(val) { console.info('setLatest', val);

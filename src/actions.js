@@ -178,6 +178,17 @@ var actions = {
 		ifr.src = itm.url;
 		ifr.style.display = 'none';
 		document.body.appendChild(ifr);
+		if (prefs.nfo) {
+			var nfo = new Blob([itm.nfo], {
+				type: 'text/xml;charset=utf-8'
+			});
+			var nfoUrl = window.URL.createObjectURL(nfo);
+			var nfoLink = document.createElement('a');
+			nfoLink.href = nfoUrl;
+			nfoLink.download = itm.title + '.nfo';
+			nfoLink.click();
+			window.URL.revokeObjectURL(nfoUrl);
+		}
 	},
 	
 	sendThanks: function(itm) {

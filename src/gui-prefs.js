@@ -23,6 +23,7 @@
 		_useSearchString: undefined,
 		_searchString: undefined,
 		_dlgSearchString: undefined,
+		_nfo: undefined,
 		
 		init: function() {
 			this._dlgComments = $('#dlg-prefs-comments');
@@ -49,6 +50,7 @@
 			this._useSearchString = $('#prefs-use-search-string');
 			this._searchString = $('#dlg-prefs-search-string-input');
 			this._dlgSearchString = $('#dlg-prefs-search-string');
+			this._nfo = $('#prefs-nfo');
 			
 			this.initValues();
 			
@@ -104,6 +106,10 @@
 			
 			this._useSearchString._('change', function() {
 				prefs.setUseSearchString(this.checked);
+			});
+			
+			this._nfo._('change', function() {
+				prefs.setNfo(this.checked);
 			});
 			
 			$('#prefs-keys')._('click', this._dlgKeys.show);
@@ -200,6 +206,7 @@
 			md.input.blur(this._latestTorrent.parentNode);
 			this._useSearchString.checked = prefs.useSearchString;
 			this._searchString.value = prefs.searchString;
+			this._nfo.checked = prefs.nfo;
 			var g = [];
 			var b = [];
 			for(var tag in prefs.goodTags) {

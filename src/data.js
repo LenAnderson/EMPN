@@ -218,6 +218,11 @@ var data = {
 					if (++done + doneSkip == rows.length) {
 						resolve(item.date > new Date(prefs.latest) && this._items.length < prefs.torrentLimit);
 					}
+					item.nfo = '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>\n<movie>\n\t<title>'+item.title+'</title>\n\t<plot>'+(desc.textContent.trim())+'</plot>';
+					if (item.tags.length > 0) {
+						item.nfo += '\n\t<tag>'+item.tags.join('</tag>\n\t<tag>')+'</tag>';
+					}
+					item.nfo += '\n</movie>';
 				}.bind(this),
 				function(err) {
 					console.info(err);
