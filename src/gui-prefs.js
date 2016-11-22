@@ -23,6 +23,7 @@
 		_useSearchString: undefined,
 		_searchString: undefined,
 		_dlgSearchString: undefined,
+		_dlgSearchStringHelp: undefined,
 		_nfo: undefined,
 		
 		init: function() {
@@ -50,6 +51,7 @@
 			this._useSearchString = $('#prefs-use-search-string');
 			this._searchString = $('#dlg-prefs-search-string-input');
 			this._dlgSearchString = $('#dlg-prefs-search-string');
+			this._dlgSearchStringHelp = $('#dlg-prefs-search-string-help');
 			this._nfo = $('#prefs-nfo');
 			
 			this.initValues();
@@ -62,6 +64,7 @@
 			$('#prefs-torrent-limit')._('click', stopProp);
 			$('#prefs-latest-torrent')._('click', stopProp);
 			$('#prefs-search-string')._('click', this._dlgSearchString.show);
+			$('#prefs-search-string-help')._('click', this._dlgSearchStringHelp.show);
 			
 			this._newestFirst._('change', function() {
 				prefs.setNewestFirst(this.checked);
@@ -182,6 +185,9 @@
 			$('#dlg-prefs-search-string-cancel')._('click', function() {
 				this._dlgSearchString.hide();
 				this.initValues();
+			}.bind(this));
+			$('#dlg-prefs-search-string-help-close')._('click', function() {
+				this._dlgSearchStringHelp.hide();
 			}.bind(this));
 		},
 		

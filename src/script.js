@@ -2,10 +2,12 @@
 // @name         EMPN
 // @namespace    https://github.com/LenAnderson/
 // @downloadURL  https://github.com/LenAnderson/EMPN/raw/master/empn.user.js
-// @version      0.5
+// @version      0.6
 // @author       LenAnderson
 // @match        http://*.empornium.me/*
 // @match        https://*.empornium.me/*
+// @match        http://*.empornium.sx/*
+// @match        https://*.empornium.sx/*
 // @grant        none
 // ==/UserScript==
 

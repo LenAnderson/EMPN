@@ -246,6 +246,14 @@ ${include: md.css}
 	height: 200px;
 	width: 500px;
 }
+#prefs-search-string-help {
+	cursor: pointer;
+}
+#dlg-prefs-search-string-help-input,
+#dlg-prefs-search-string-help-output {
+	border: 1px solid rgb(169, 169, 169);
+	margin: 0 10px 20px 10px;
+}
 
 
 #dlg-prefs-tags label {
