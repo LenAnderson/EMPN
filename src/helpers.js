@@ -228,6 +228,24 @@ function get(url) {
         xhr.send();
     });
 }
+function getResponse(url, params, headers) {
+	params = params || {};
+	headers = headers || {};
+	return new Promise(function(resolve, reject) {
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', url, true);
+		xhr.addEventListener('load', function() {
+			resolve(xhr.response);
+		})
+		Object.keys(params).forEach(function(key) {
+			xhr[key] = params[key];
+		});
+		Object.keys(headers).forEach(function(key) {
+			xhr.setRequestHeader(key, headers[key]);
+		});
+		xhr.send();
+	});
+}
 function post(url, args) {
 	return new Promise(function(resolve, reject) {
 		var xhr = new XMLHttpRequest();

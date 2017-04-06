@@ -172,12 +172,21 @@ var actions = {
 				gui.prefs.initValues();
 			});
 		}
-		var ifr = document.createElement('iframe');
+		getResponse(itm.url, {responseType:'blob'}).then(function(data) {
+			// var blob = new Blob(data, {type: "x-application/torrent"});
+			var url = window.URL.createObjectURL(data);
+			var link = document.createElement('a');
+			link.href = url;
+			link.download = '[Empornium]' + itm.title + '.torrent';
+			link.click();
+			window.URL.revokeObjectURL(url);
+		});
+		// var ifr = document.createElement('iframe');
 		//TODO: iframe is not removed. onload event does not trigger with attachments.
-		ifr.addEventListener('load', function() { console.info('load!'); ifr.remove(); delete ifr; });
-		ifr.src = itm.url;
-		ifr.style.display = 'none';
-		document.body.appendChild(ifr);
+		// ifr.addEventListener('load', function() { console.info('load!'); ifr.remove(); delete ifr; });
+		// ifr.src = itm.url;
+		// ifr.style.display = 'none';
+		// document.body.appendChild(ifr);
 		if (prefs.nfo) {
 			var nfo = new Blob([itm.nfo], {
 				type: 'text/xml;charset=utf-8'
