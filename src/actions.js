@@ -248,7 +248,7 @@ var actions = {
 		var itm;
 		if (curr === true) itm = data.items[state.torrentIndex];
 		else itm = data._items[0];
-		prefs.setLatest(itm.date.toJSON());
+		prefs.setLatest(itm.date);
 		gui._toast.add('Catching Up!', '');
 	}
 }
