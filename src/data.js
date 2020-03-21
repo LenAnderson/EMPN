@@ -200,7 +200,7 @@ var data = {
 				this._items.push(item);
 				gui.updateLoading((this._items.length) + ' Torrents found');
 				getHTML(item.urlDetails).then(function(html) {
-					var desc = html.$('#descbox');
+					var desc = html.$(`#content${item.id}`);
 					item.comments = html.$$('.forum_post.box.vertical_margin:not(#quickreplypreview)');
 					item.description = desc.innerHTML.replace(/ data-(src|href)=/g, ' $1=');
 					desc.$$('img').forEach(function(it) {
