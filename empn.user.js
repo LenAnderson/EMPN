@@ -1560,16 +1560,17 @@ var data = {
 				this._items.push(item);
 				gui.updateLoading((this._items.length) + ' Torrents found');
 				getHTML(item.urlDetails).then(function(html) {
-					var desc = html.$('#descbox');
+					var desc = html.$(`#content${item.id}`);
 					item.comments = html.$$('.forum_post.box.vertical_margin:not(#quickreplypreview)');
 					item.description = desc.innerHTML.replace(/ data-(src|href)=/g, ' $1=');
 					desc.$$('img').forEach(function(it) {
 						var thumb = {};
-						thumb.src = it.getAttribute('data-src');
+						let src = it.getAttribute('data-src').replace(/\.th\.jpg$/, '.jpg');
+						thumb.src = src;
 						if (it.parentNode.tagName == 'A') {
 							thumb.link = it.parentNode.getAttribute('data-href');
 						} else {
-							thumb.link = it.getAttribute('data-src');
+							thumb.link = src;
 						}
 						item.thumbs.push(JSON.stringify(thumb));
 					});
@@ -1846,7 +1847,7 @@ var actions = {
 		var itm;
 		if (curr === true) itm = data.items[state.torrentIndex];
 		else itm = data._items[0];
-		prefs.setLatest(itm.date.toJSON());
+		prefs.setLatest(itm.date);
 		gui._toast.add('Catching Up!', '');
 	}
 }
