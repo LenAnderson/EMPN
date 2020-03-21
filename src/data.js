@@ -205,11 +205,12 @@ var data = {
 					item.description = desc.innerHTML.replace(/ data-(src|href)=/g, ' $1=');
 					desc.$$('img').forEach(function(it) {
 						var thumb = {};
-						thumb.src = it.getAttribute('data-src');
+						let src = it.getAttribute('data-src').replace(/\.th\.jpg$/, '.jpg');
+						thumb.src = src;
 						if (it.parentNode.tagName == 'A') {
 							thumb.link = it.parentNode.getAttribute('data-href');
 						} else {
-							thumb.link = it.getAttribute('data-src');
+							thumb.link = src;
 						}
 						item.thumbs.push(JSON.stringify(thumb));
 					});
