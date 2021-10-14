@@ -1208,6 +1208,7 @@ var gui = {
 			itm.addClass('empn-active');
 		}
 		itm.id = 'item-'+idx;
+		itm.setAttribute('data-dl', item.url);
 		itm.item = item;
 		itm.$('.empn-title').textContent = item.title;
 		itm.$('.empn-title').title = item.title;
@@ -1537,7 +1538,8 @@ var data = {
 				item.pass = pass;
 				item.category = row.$('.cats_col img').getAttribute('data-src').replace(/^.+cat_([^\.]+)\.png/, '$1');
 				item.urlDetails = row.$('td:nth-child(2) > a').getAttribute('data-href');
-				item.url = 'torrents.php?action=download&id='+item.id+'&authkey='+auth+'&torrent_pass='+item.pass;
+				// item.url = 'torrents.php?action=download&id='+item.id+'&authkey='+auth+'&torrent_pass='+item.pass;
+				item.url = row.$('a[data-href*="/torrents.php?action=download"]').getAttribute('data-href');
 				item.title = row.$('td:nth-child(2) > a').textContent;
 				// item.comments = row.$('td:nth-child(4)').textContent*1;
 				item.comments = [];
@@ -1561,6 +1563,9 @@ var data = {
 				gui.updateLoading((this._items.length) + ' Torrents found');
 				getHTML(item.urlDetails).then(function(html) {
 					var desc = html.$(`#content${item.id}`);
+					// var dlId = (html.$('.torrent_buttons > [title="Download"]') || html.$('.torrent_buttons > a')).href.replace(/^.+id=(\d+).*$/, '$1');
+					// item.url = 'torrents.php?action=download&id='+dlId+'&authkey='+auth+'&torrent_pass='+item.pass;
+					// item.url = (html.$('.torrent_buttons > [title="Download"]') || html.$('.torrent_buttons > a')).href;
 					item.comments = html.$$('.forum_post.box.vertical_margin:not(#quickreplypreview)');
 					item.description = desc.innerHTML.replace(/ data-(src|href)=/g, ' $1=');
 					desc.$$('img').forEach(function(it) {
@@ -1768,15 +1773,15 @@ var actions = {
 		if (prefs.autoTags) {
 			itm.tags.forEach(function(it) {
 				prefs.raiseTag(it);
-				gui.prefs.initValues();
 			});
+			gui.prefs.initValues();
 		}
 		getResponse(itm.url, {responseType:'blob'}).then(function(data) {
 			// var blob = new Blob(data, {type: "x-application/torrent"});
 			var url = window.URL.createObjectURL(data);
 			var link = document.createElement('a');
 			link.href = url;
-			link.download = '[Empornium]' + itm.title + '.torrent';
+			link.download = '[Empornium]' + itm.title.replace(/[^a-z0-9\-_., ()[\]]+/ig, '_') + '.torrent';
 			link.click();
 			window.URL.revokeObjectURL(url);
 		});

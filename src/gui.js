@@ -148,6 +148,7 @@ var gui = {
 			itm.addClass('empn-active');
 		}
 		itm.id = 'item-'+idx;
+		itm.setAttribute('data-dl', item.url);
 		itm.item = item;
 		itm.$('.empn-title').textContent = item.title;
 		itm.$('.empn-title').title = item.title;

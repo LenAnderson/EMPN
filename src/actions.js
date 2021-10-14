@@ -169,15 +169,15 @@ var actions = {
 		if (prefs.autoTags) {
 			itm.tags.forEach(function(it) {
 				prefs.raiseTag(it);
-				gui.prefs.initValues();
 			});
+			gui.prefs.initValues();
 		}
 		getResponse(itm.url, {responseType:'blob'}).then(function(data) {
 			// var blob = new Blob(data, {type: "x-application/torrent"});
 			var url = window.URL.createObjectURL(data);
 			var link = document.createElement('a');
 			link.href = url;
-			link.download = '[Empornium]' + itm.title + '.torrent';
+			link.download = '[Empornium]' + itm.title.replace(/[^a-z0-9\-_., ()[\]]+/ig, '_') + '.torrent';
 			link.click();
 			window.URL.revokeObjectURL(url);
 		});
