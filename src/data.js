@@ -178,7 +178,10 @@ var data = {
 				item.category = row.$('.cats_col img').getAttribute('data-src').replace(/^.+cat_([^\.]+)\.png/, '$1');
 				item.urlDetails = row.$('td:nth-child(2) > a').getAttribute('data-href');
 				// item.url = 'torrents.php?action=download&id='+item.id+'&authkey='+auth+'&torrent_pass='+item.pass;
-				item.url = row.$('a[data-href*="/torrents.php?action=download"]').getAttribute('data-href');
+				const dlLink = row.$('a[data-href*="/torrents.php?action=download"]');
+				if (dlLink) {
+					item.url = dlLink.getAttribute('data-href');
+				}
 				item.title = row.$('td:nth-child(2) > a').textContent;
 				// item.comments = row.$('td:nth-child(4)').textContent*1;
 				item.comments = [];
